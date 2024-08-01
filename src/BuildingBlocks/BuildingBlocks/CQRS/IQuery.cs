@@ -2,7 +2,7 @@
 
 namespace BuildingBlocks.CQRS
 {
-    internal interface IQuery<out TResponse>: IRequest<TResponse> where TResponse:notnull
+    public interface IQuery<out TResponse>: IRequest<TResponse> where TResponse:notnull
     {
     }
 }
