@@ -1,6 +1,4 @@
-﻿using Basket.API.Basket.StoreBasket;
-using Basket.API.Models;
-using Carter;
+﻿using Carter;
 using Mapster;
 using MediatR;
 
@@ -12,7 +10,7 @@ namespace Basket.API.Basket.DeleteBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket{userName}", async (string UserName, ISender sender) =>
+            app.MapPost("/basket/{userName}", async (string UserName, ISender sender) =>
             {
                 var result = await sender.Send(new DeleteBasketCommand(UserName));
 

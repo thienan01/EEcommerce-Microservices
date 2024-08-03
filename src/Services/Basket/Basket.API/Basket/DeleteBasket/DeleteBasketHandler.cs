@@ -1,16 +1,17 @@
-﻿using BuildingBlocks.CQRS;
-using System.Windows.Input;
+﻿using Basket.API.Data;
+using BuildingBlocks.CQRS;
 
 namespace Basket.API.Basket.DeleteBasket
 {
-    public record DeleteBasketCommand(string UserName) : ICommand<DeleteBasketResponse>;
-    public record DeleteBasketResponse(bool IsSuccess);
-    public class DeleteBasketHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResponse>
+    public record DeleteBasketCommand(string UserName) : ICommand<DeleteBasketResult>;
+    public record DeleteBasketResult(bool IsSuccess);
+    public class DeleteBasketHandler(IBasketRepository basketRepository) : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
     {
-        public async Task<DeleteBasketResponse> Handle(DeleteBasketCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteBasketResult> Handle(DeleteBasketCommand request, CancellationToken cancellationToken)
         {
             //TODO: Delete basket
-            return new DeleteBasketResponse(true);
+            await basketRepository.DeleteBasket(request.UserName, cancellationToken);
+            return new DeleteBasketResult(true);
         }
     }
 }

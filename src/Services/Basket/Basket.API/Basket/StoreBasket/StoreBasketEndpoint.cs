@@ -11,7 +11,7 @@ namespace Basket.API.Basket.StoreBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("/basket{userName}", async (StoreBasketRequest shoppingCart, ISender sender) =>
+            app.MapPost("/basket", async (StoreBasketRequest shoppingCart, ISender sender) =>
             {
                 var result = await sender.Send(new StoreBasketCommand(shoppingCart.ShoppingCart));
 
