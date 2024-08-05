@@ -11,7 +11,6 @@ namespace Ordering.Application
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
-
             return services;
         }
     }
